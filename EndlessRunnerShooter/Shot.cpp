@@ -1,12 +1,14 @@
 #include "Shot.h"
 
-Shot::Shot(sf::Vector2f pos, float rotation) : mPosition(pos),
-                                               mRotation(rotation)
+Shot::Shot(sf::Vector2f pos, float rotation, sf::Texture& texture) : 
+	mPosition(pos),
+	mRotation(rotation)
 {
-    mShotSprite = sf::RectangleShape(sf::Vector2f(3.f, 1.f));
+    mShotSprite = sf::RectangleShape(sf::Vector2f(4.f, 4.f));
     mShotSprite.setOrigin(sf::Vector2f(0.f, 0.5f));
     mShotSprite.setPosition(mPosition);
     mShotSprite.setRotation(mRotation);
+	mShotSprite.setTexture(&texture);
 }
 
 void Shot::Update(float time_passed)

@@ -6,7 +6,7 @@
 class Shot
  {
  public:
-     Shot(sf::Vector2f pos, float rotation);
+     Shot(sf::Vector2f pos, float rotation, sf::Texture& texture);
      void Update(float time_passed);
      void Draw(sf::RenderWindow &window);
 
