@@ -39,6 +39,9 @@
     <ClCompile Include="Shot.cpp">
       <Filter>Source Files\Shooting</Filter>
     </ClCompile>
+    <ClCompile Include="IActions.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -55,6 +58,9 @@
     </ClInclude>
     <ClInclude Include="Shot.h">
       <Filter>Header Files\Shooting</Filter>
+    </ClInclude>
+    <ClInclude Include="IActions.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

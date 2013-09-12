@@ -1,6 +1,7 @@
 #include "Hero.h"
+#include "IActions.h"
 
-Hero::Hero(int id, sf::Vector2f pos, float radius, float scale):MovingEntity(id, pos, radius, scale) 
+Hero::Hero(int id, sf::Vector2f pos, float radius, float scale, IActions& actions):MovingEntity(id, pos, radius, scale), mActions(actions)
 {
     if(!mWheelTexture.loadFromFile("Art/Wheelie.png"));
     {
@@ -28,7 +29,6 @@ Hero::Hero(int id, sf::Vector2f pos, float radius, float scale):MovingEntity(id,
     mTurretSprite.setPosition(mMountSprite.getPosition());
     mTurretSprite.setRotation(mMountSprite.getRotation());
 
-    mShotList = std::make_shared<std::vector<Shot> >();
 }
 
 void Hero::Update(float time_passed, sf::RenderWindow &win)
@@ -45,22 +45,7 @@ void Hero::Update(float time_passed, sf::RenderWindow &win)
 
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
     {
-        mShotList->push_back(Shot(mTurretSprite.getPosition(), mTurretSprite.getRotation()));
-    }
-    
-    for(int i = 0; i < mShotList->size(); i++)
-    {
-        Shot &pShot = mShotList->at(i);
-        pShot.Update(time_passed);
-        float posX = pShot.GetPosition().x;
-        float posY = pShot.GetPosition().y;
-        //TODO: Shot max distance
-        if(posX < 0 || posX > 1024 ||
-              posY < 0 || posY > 768)
-        {
-            mShotList->erase(mShotList->begin() + i);
-            i++;
-        }
+        mActions.shoot(mTurretSprite);
     }
     
 }
@@ -71,10 +56,4 @@ void Hero::Render(sf::RenderWindow &window)
     window.draw(mHelmetSprite);
     window.draw(mMountSprite);
     window.draw(mTurretSprite);
-    for(int i = 0; i < mShotList->size(); i++)
-    {
-        Shot &pShot = mShotList->at(i);
-        pShot.Draw(window);
-    }
-
 }

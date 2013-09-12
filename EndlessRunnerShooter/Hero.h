@@ -4,6 +4,9 @@
 #include <algorithm>
 #include <memory>
 
+//Only cool kids forward declare
+class IActions;
+
 class Hero : public MovingEntity
 {
 private:
@@ -18,10 +21,10 @@ private:
 
     float mRadius;
 
-    std::shared_ptr<std::vector<Shot> > mShotList;
+    IActions& mActions;
     
 public:
-    Hero(int id, sf::Vector2f pos, float radius, float scale);
+    Hero(int id, sf::Vector2f pos, float radius, float scale, IActions& actions);
     void Update(float time_passed, sf::RenderWindow &win);
     void Render(sf::RenderWindow &window);
 

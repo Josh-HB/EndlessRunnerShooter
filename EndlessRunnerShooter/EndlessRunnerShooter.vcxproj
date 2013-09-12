@@ -81,6 +81,7 @@
   <ItemGroup>
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Hero.cpp" />
+    <ClCompile Include="IActions.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Shot.cpp" />
   </ItemGroup>
@@ -88,6 +89,7 @@
     <ClInclude Include="Entity.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Hero.h" />
+    <ClInclude Include="IActions.h" />
     <ClInclude Include="MovingEntity.h" />
     <ClInclude Include="Shot.h" />
   </ItemGroup>
