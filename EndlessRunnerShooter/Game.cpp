@@ -3,12 +3,12 @@
 Game::Game()
 {
     mWindow = std::make_shared<sf::RenderWindow>(sf::VideoMode(1024, 768),"Game", sf::Style::Default);
-    if(!mBackground.loadFromFile("Background.png"));
+    if(!mBackground.loadFromFile("Art/Background.png"));
     {
         //assert out
     }
     mBgSprite.setTexture(mBackground);
-}
+}                                                                                                                                                                                                                                                                                                                
 
 void Game::Run()
 {
@@ -16,7 +16,7 @@ void Game::Run()
     sf::Clock clock;
 
     //main Character
-    Hero hero(0, sf::Vector2f(200.f,200.f), 20.f, 1.f);
+    Hero hero(0, sf::Vector2f(200.f,200.f), 32.f, 1.f);
 
     //main loop
     while (mWindow->isOpen())

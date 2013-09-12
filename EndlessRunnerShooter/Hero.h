@@ -7,9 +7,13 @@
 class Hero : public MovingEntity
 {
 private:
-    sf::CircleShape mHeroSprite;
+    sf::Texture mWheelTexture;
+    sf::Sprite mWheelSprite;
+
     sf::CircleShape mMountSprite;
     sf::RectangleShape mTurretSprite;
+
+    float mRadius;
 
     std::shared_ptr<std::vector<Shot> > mShotList;
     

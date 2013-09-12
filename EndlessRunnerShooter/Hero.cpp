@@ -2,14 +2,18 @@
 
 Hero::Hero(int id, sf::Vector2f pos, float radius, float scale):MovingEntity(id, pos, radius, scale) 
 {
-    mHeroSprite = sf::CircleShape(mBoundingRadius);
-    mHeroSprite.setOrigin(sf::Vector2f(mBoundingRadius, mBoundingRadius));
-    mHeroSprite.setPosition(mPosition);
+    if(!mWheelTexture.loadFromFile("Art/Wheelie.png"));
+    {
+        //assert out
+    }
+    mWheelSprite.setTexture((mWheelTexture));
+    mWheelSprite.setOrigin(sf::Vector2f(mBoundingRadius, mBoundingRadius));
+    mWheelSprite.setPosition(mPosition);
 
     mMountSprite = sf::CircleShape(mBoundingRadius/6.f);
     mMountSprite.setOrigin(sf::Vector2f(mBoundingRadius/6.f, mBoundingRadius/6.f));
     mMountSprite.setFillColor(sf::Color::Red);
-    mMountSprite.setPosition(mHeroSprite.getPosition());
+    mMountSprite.setPosition(mWheelSprite.getPosition());
 
     mTurretSprite = sf::RectangleShape(sf::Vector2f(16.f, 6.f));
     mTurretSprite.setOrigin(sf::Vector2f(0.f, 3.f));
@@ -22,8 +26,8 @@ Hero::Hero(int id, sf::Vector2f pos, float radius, float scale):MovingEntity(id,
 
 void Hero::Update(float time_passed, sf::RenderWindow &win)
 {
-    float currentRotation = mHeroSprite.getRotation();
-    mHeroSprite.setRotation( currentRotation -= 100.f * time_passed );
+    float currentRotation = mWheelSprite.getRotation();
+    mWheelSprite.setRotation( currentRotation += 1000.f * time_passed );
 
     float dx =  sf::Mouse::getPosition(win).x - mMountSprite.getPosition().x;
     float dy = sf::Mouse::getPosition(win).y - mMountSprite.getPosition().y;
@@ -56,7 +60,7 @@ void Hero::Update(float time_passed, sf::RenderWindow &win)
 
 void Hero::Render(sf::RenderWindow &window)
 {
-    window.draw(mHeroSprite);
+    window.draw(mWheelSprite);
     window.draw(mMountSprite);
     window.draw(mTurretSprite);
     for(int i = 0; i < mShotList->size(); i++)

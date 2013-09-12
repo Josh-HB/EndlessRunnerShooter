@@ -18,8 +18,8 @@ void Shot::Update(float time_passed)
 
     //need to have a specific shot speed
     sf::Vector2f newPos = mShotSprite.getPosition();
-    newPos.x += newx * 250.f;
-    newPos.y += newy * 250.f;
+    newPos.x += newx * 750.f;
+    newPos.y += newy * 750.f;
 
     mShotSprite.setPosition(newPos);
 }
