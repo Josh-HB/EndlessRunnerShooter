@@ -10,6 +10,9 @@ private:
     sf::Texture mWheelTexture;
     sf::Sprite mWheelSprite;
 
+    sf::Texture mHelmetTexture;
+    sf::Sprite mHelmetSprite;
+
     sf::CircleShape mMountSprite;
     sf::RectangleShape mTurretSprite;
 

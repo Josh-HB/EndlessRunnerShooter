@@ -10,6 +10,13 @@ Hero::Hero(int id, sf::Vector2f pos, float radius, float scale):MovingEntity(id,
     mWheelSprite.setOrigin(sf::Vector2f(mBoundingRadius, mBoundingRadius));
     mWheelSprite.setPosition(mPosition);
 
+    if(!mHelmetTexture.loadFromFile("Art/Helmet.png"))
+    {
+
+    }
+    mHelmetSprite.setTexture(mHelmetTexture);
+    mHelmetSprite.setPosition(mWheelSprite.getPosition() - mWheelSprite.getOrigin());
+
     mMountSprite = sf::CircleShape(mBoundingRadius/6.f);
     mMountSprite.setOrigin(sf::Vector2f(mBoundingRadius/6.f, mBoundingRadius/6.f));
     mMountSprite.setFillColor(sf::Color::Red);
@@ -61,6 +68,7 @@ void Hero::Update(float time_passed, sf::RenderWindow &win)
 void Hero::Render(sf::RenderWindow &window)
 {
     window.draw(mWheelSprite);
+    window.draw(mHelmetSprite);
     window.draw(mMountSprite);
     window.draw(mTurretSprite);
     for(int i = 0; i < mShotList->size(); i++)
