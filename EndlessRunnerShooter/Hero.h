@@ -2,6 +2,7 @@
 #include "Shot.h"
 #include <cmath>
 #include <algorithm>
+#include <memory>
 
 class Hero : public MovingEntity
 {
