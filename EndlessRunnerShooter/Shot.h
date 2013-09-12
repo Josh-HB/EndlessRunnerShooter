@@ -9,6 +9,9 @@ class Shot
      Shot(sf::Vector2f pos, float rotation);
      void Update(float time_passed);
      void Draw(sf::RenderWindow &window);
+
+     sf::Vector2f GetPosition()const{return mShotSprite.getPosition();}
+
  private:
      sf::RectangleShape mShotSprite;
      sf::Vector2f mPosition;

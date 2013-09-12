@@ -3,6 +3,11 @@
 Game::Game()
 {
     mWindow = std::make_shared<sf::RenderWindow>(sf::VideoMode(1024, 768),"Game", sf::Style::Default);
+    if(!mBackground.loadFromFile("Background.png"));
+    {
+        //assert out
+    }
+    mBgSprite.setTexture(mBackground);
 }
 
 void Game::Run()
@@ -25,6 +30,7 @@ void Game::Run()
         sf::Time timePassed = clock.restart();
         hero.Update(timePassed.asSeconds(), *mWindow);
         mWindow->clear();
+        mWindow->draw(mBgSprite);
         hero.Render(*mWindow);
         mWindow->display();
     }

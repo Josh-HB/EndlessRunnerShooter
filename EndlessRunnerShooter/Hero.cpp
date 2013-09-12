@@ -32,7 +32,7 @@ void Hero::Update(float time_passed, sf::RenderWindow &win)
     mMountSprite.setRotation(mountRotation);
     mTurretSprite.setRotation(mMountSprite.getRotation());
 
-    if(sf::Mouse::isButtonPressed(sf::Mouse::Left))
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
     {
         mShotList->push_back(Shot(mTurretSprite.getPosition(), mTurretSprite.getRotation()));
     }
@@ -41,6 +41,15 @@ void Hero::Update(float time_passed, sf::RenderWindow &win)
     {
         Shot &pShot = mShotList->at(i);
         pShot.Update(time_passed);
+        float posX = pShot.GetPosition().x;
+        float posY = pShot.GetPosition().y;
+        //TODO: Shot max distance
+        if(posX < 0 || posX > 1024 ||
+              posY < 0 || posY > 768)
+        {
+            mShotList->erase(mShotList->begin() + i);
+            i++;
+        }
     }
     
 }
