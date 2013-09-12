@@ -7,6 +7,13 @@ Game::Game()
 
 void Game::Run()
 {
+    //TIme Step
+    sf::Clock clock;
+
+    //main Character
+    Hero hero(0, sf::Vector2f(200.f,200.f), 20.f, 1.f);
+
+    //main loop
     while (mWindow->isOpen())
     {
         sf::Event event;
@@ -15,9 +22,10 @@ void Game::Run()
             if (event.type == sf::Event::Closed)
                 mWindow->close();
         }
-
+        sf::Time timePassed = clock.restart();
+        hero.Update(timePassed.asSeconds(), *mWindow);
         mWindow->clear();
-
+        hero.Render(*mWindow);
         mWindow->display();
     }
 }

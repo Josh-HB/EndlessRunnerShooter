@@ -1,5 +1,6 @@
 #include <memory>
 #include "SFML/Graphics.hpp"
+#include "Hero.h"
 
 class Game
 {
