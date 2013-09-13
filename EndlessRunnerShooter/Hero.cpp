@@ -47,7 +47,6 @@ void Hero::Update(float time_passed, sf::RenderWindow &win)
     {
         mActions.shoot(mTurretSprite);
     }
-    
 }
 
 void Hero::Render(sf::RenderWindow &window)

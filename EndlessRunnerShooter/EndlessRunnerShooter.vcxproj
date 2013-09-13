@@ -81,9 +81,9 @@
   <ItemGroup>
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Hero.cpp" />
-    <ClCompile Include="IActions.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Shot.cpp" />
+    <ClCompile Include="StationaryEntity.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Entity.h" />
@@ -93,6 +93,7 @@
     <ClInclude Include="MovingEntity.h" />
     <ClInclude Include="Shot.h" />
     <ClInclude Include="ShotPtr.h" />
+    <ClInclude Include="StationaryEntity.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

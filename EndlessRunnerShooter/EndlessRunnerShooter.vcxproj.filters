@@ -25,6 +25,18 @@
     <Filter Include="Source Files\Shooting">
       <UniqueIdentifier>{c47f61d3-c7e0-4f84-9859-ace86a9b7b2e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Entities\Moving Entities">
+      <UniqueIdentifier>{4835f74b-e9f8-4ae0-9429-3e0e4922177b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Entities\Stationary Entities">
+      <UniqueIdentifier>{df86e929-e1ea-44b2-ac88-1205ff6edfc9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Entities\Stationary Entities">
+      <UniqueIdentifier>{999f134a-6d43-4eea-894f-0878fe8d328d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Entities\Moving Entity">
+      <UniqueIdentifier>{a6ad57c6-edf4-415f-bd9c-a3385e5a2de5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -33,14 +45,14 @@
     <ClCompile Include="Game.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Hero.cpp">
-      <Filter>Source Files\Entities</Filter>
-    </ClCompile>
     <ClCompile Include="Shot.cpp">
       <Filter>Source Files\Shooting</Filter>
     </ClCompile>
-    <ClCompile Include="IActions.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="StationaryEntity.cpp">
+      <Filter>Source Files\Entities\Stationary Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="Hero.cpp">
+      <Filter>Source Files\Entities\Moving Entity</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -48,12 +60,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Entity.h">
-      <Filter>Header Files\Entities</Filter>
-    </ClInclude>
-    <ClInclude Include="Hero.h">
-      <Filter>Header Files\Entities</Filter>
-    </ClInclude>
-    <ClInclude Include="MovingEntity.h">
       <Filter>Header Files\Entities</Filter>
     </ClInclude>
     <ClInclude Include="Shot.h">
@@ -64,6 +70,15 @@
     </ClInclude>
     <ClInclude Include="ShotPtr.h">
       <Filter>Header Files\Shooting</Filter>
+    </ClInclude>
+    <ClInclude Include="Hero.h">
+      <Filter>Header Files\Entities\Moving Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="MovingEntity.h">
+      <Filter>Header Files\Entities\Moving Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="StationaryEntity.h">
+      <Filter>Header Files\Entities\Stationary Entities</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
