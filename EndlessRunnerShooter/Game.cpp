@@ -1,9 +1,12 @@
 #include "Game.h"
 
+static const int WINDOW_WIDTH = 1024;
+static const int WINDOW_HEIGHT = 768;
+
 Game::Game() : 
     mShotList(std::make_shared<std::vector<Shot> >()) 
 {
-    mWindow = std::make_shared<sf::RenderWindow>(sf::VideoMode(1024, 768),"Game", sf::Style::Default);
+    mWindow = std::make_shared<sf::RenderWindow>(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT),"Game", sf::Style::Default);
     if(!mBackground.loadFromFile("Art/Background.png"));
     {
         //assert out
@@ -41,8 +44,8 @@ void Game::Run()
             float posX = pShot.GetPosition().x;
             float posY = pShot.GetPosition().y;
             //TODO: Shot max distance
-            if(posX < 0 || posX > 1024 ||
-               posY < 0 || posY > 768)
+            if(posX < 0 || posX > WINDOW_WIDTH ||
+               posY < 0 || posY > WINDOW_HEIGHT)
             {
                 mShotList->erase(mShotList->begin() + i);
                 i++;
