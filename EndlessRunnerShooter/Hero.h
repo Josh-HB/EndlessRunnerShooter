@@ -1,5 +1,4 @@
 #include "MovingEntity.h"
-#include "Shot.h"
 #include <cmath>
 #include <algorithm>
 #include <memory>

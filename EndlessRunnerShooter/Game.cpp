@@ -1,12 +1,14 @@
 #include "Game.h"
+#include "Shot.h"
+#include "Hero.h"
 
 static const int WINDOW_WIDTH = 1024;
 static const int WINDOW_HEIGHT = 768;
 
 Game::Game() : 
-    mShotList(std::make_shared<std::vector<Shot> >()) 
+    mShotList(std::make_shared<std::vector<ShotPtr> >()) 
 {
-    mWindow = std::make_shared<sf::RenderWindow>(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT),"Game", sf::Style::Default);
+    mWindow = std::make_shared<sf::RenderWindow>(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "Game", sf::Style::Default);
     if(!mBackground.loadFromFile("Art/Background.png"));
     {
         //assert out
@@ -39,10 +41,10 @@ void Game::Run()
 
         for(int i = 0; i < mShotList->size(); i++)
         {
-            Shot &pShot = mShotList->at(i);
-            pShot.Update(secondsPassed);
-            float posX = pShot.GetPosition().x;
-            float posY = pShot.GetPosition().y;
+            ShotPtr pShot = mShotList->at(i);
+            pShot->Update(secondsPassed);
+            float posX = pShot->GetPosition().x;
+            float posY = pShot->GetPosition().y;
             //TODO: Shot max distance
             if(posX < 0 || posX > WINDOW_WIDTH ||
                posY < 0 || posY > WINDOW_HEIGHT)
@@ -57,8 +59,8 @@ void Game::Run()
         hero.Render(*mWindow);
         for(int i = 0; i < mShotList->size(); i++)
         {
-            Shot &pShot = mShotList->at(i);
-            pShot.Draw(*mWindow);
+            ShotPtr pShot = mShotList->at(i);
+            pShot->Draw(*mWindow);
         }
         mWindow->display();
     }
@@ -66,5 +68,5 @@ void Game::Run()
 
 void Game::shoot(sf::Transformable& performer)
 {
-    mShotList->push_back(Shot(performer.getPosition(), performer.getRotation(), mShotTex)); 
+    mShotList->push_back(std::make_shared<Shot>(performer.getPosition(), performer.getRotation(), mShotTex)); 
 }

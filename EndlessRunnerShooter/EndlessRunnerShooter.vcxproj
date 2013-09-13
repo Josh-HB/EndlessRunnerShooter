@@ -92,6 +92,7 @@
     <ClInclude Include="IActions.h" />
     <ClInclude Include="MovingEntity.h" />
     <ClInclude Include="Shot.h" />
+    <ClInclude Include="ShotPtr.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

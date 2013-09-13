@@ -4,7 +4,7 @@
 #include <cmath>
 
 class Shot
- {
+{
  public:
      Shot(sf::Vector2f pos, float rotation, sf::Texture& texture);
      void Update(float time_passed);

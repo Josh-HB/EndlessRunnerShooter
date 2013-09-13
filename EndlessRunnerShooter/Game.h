@@ -1,7 +1,7 @@
 #include <memory>
 #include "SFML/Graphics.hpp"
-#include "Hero.h"
 #include "IActions.h"
+#include "ShotPtr.h"
 
 class Game : public IActions
 {
@@ -12,7 +12,7 @@ private:
     sf::Texture mShotTex;
     //Sprites
     sf::Sprite mBgSprite;
-    std::shared_ptr<std::vector<Shot> > mShotList;
+    VectorPtr_ShotPtr mShotList;
     
 public:
     Game();
