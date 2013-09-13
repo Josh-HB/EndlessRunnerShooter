@@ -1,9 +1,14 @@
+#include <iterator>
+#include <vector>
 #include "Game.h"
 #include "Shot.h"
 #include "Hero.h"
 
 static const int WINDOW_WIDTH = 1024;
 static const int WINDOW_HEIGHT = 768;
+
+static const float MAX_SHOT_DISTANCE = 400;
+static const float MAX_SHOT_DISTANCE_SQ = MAX_SHOT_DISTANCE*MAX_SHOT_DISTANCE;
 
 Game::Game() : 
     mShotList(std::make_shared<std::vector<ShotPtr> >()) 
@@ -34,24 +39,25 @@ void Game::Run()
             if (event.type == sf::Event::Closed)
                 mWindow->close();
         }
-        sf::Time timePassed = clock.restart();
-        
-        float secondsPassed = timePassed.asSeconds();
+        float secondsPassed = clock.restart().asSeconds();
         hero.Update(secondsPassed, *mWindow);
 
-        for(int i = 0; i < mShotList->size(); i++)
+        for(std::vector<ShotPtr>::iterator it = mShotList->begin(); it != mShotList->end();)
         {
-            ShotPtr pShot = mShotList->at(i);
-            pShot->Update(secondsPassed);
-            float posX = pShot->GetPosition().x;
-            float posY = pShot->GetPosition().y;
-            //TODO: Shot max distance
-            if(posX < 0 || posX > WINDOW_WIDTH ||
-               posY < 0 || posY > WINDOW_HEIGHT)
+            (*it)->Update(secondsPassed);
+			sf::Vector2f shotPos = (*it)->GetPosition();
+			// Would it be better to base this on travel time to live?
+			sf::Vector2f travelVector = shotPos - hero.getPosition();
+            if(shotPos.x < 0 || shotPos.x > WINDOW_WIDTH ||
+               shotPos.y < 0 || shotPos.y > WINDOW_HEIGHT||
+			   (travelVector.x*travelVector.x + travelVector.y*travelVector.y) > MAX_SHOT_DISTANCE_SQ)
             {
-                mShotList->erase(mShotList->begin() + i);
-                i++;
+                it = mShotList->erase(it);
             }
+			else 
+			{
+				it++;
+			}
         } 
 
         mWindow->clear();
