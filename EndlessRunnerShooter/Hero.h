@@ -24,6 +24,8 @@ private:
 
     IActions& mActions;
 	sf::Time mTimeOfBirth;
+
+    void SetPosition(sf::Vector2f& newPosition);
     
 public:
     Hero(sf::Vector2f pos, float radius, float scale, IActions& actions, sf::Time currentTime);

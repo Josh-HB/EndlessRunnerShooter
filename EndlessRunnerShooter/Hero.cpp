@@ -15,25 +15,21 @@ Hero::Hero(sf::Vector2f pos, float radius, float scale, IActions& actions, sf::T
     }
     mWheelSprite.setTexture((mWheelTexture));
     mWheelSprite.setOrigin(sf::Vector2f(mBoundingRadius, mBoundingRadius));
-    mWheelSprite.setPosition(mPosition);
 
     if(!mHelmetTexture.loadFromFile("Art/Helmet.png"))
     {
 
     }
     mHelmetSprite.setTexture(mHelmetTexture);
-    mHelmetSprite.setPosition(mWheelSprite.getPosition() - mWheelSprite.getOrigin());
 
     mMountSprite = sf::CircleShape(mBoundingRadius/6.f);
     mMountSprite.setOrigin(sf::Vector2f(mBoundingRadius/6.f, mBoundingRadius/6.f));
     mMountSprite.setFillColor(sf::Color::Red);
-    mMountSprite.setPosition(mWheelSprite.getPosition());
 
     mTurretSprite = sf::RectangleShape(sf::Vector2f(16.f, 6.f));
     mTurretSprite.setOrigin(sf::Vector2f(0.f, 3.f));
     mTurretSprite.setFillColor(sf::Color::Green);
-    mTurretSprite.setPosition(mMountSprite.getPosition());
-    mTurretSprite.setRotation(mMountSprite.getRotation());
+    SetPosition(pos);
 }
 
 void Hero::Update(float time_passed, sf::RenderWindow &win)
@@ -52,6 +48,10 @@ void Hero::Update(float time_passed, sf::RenderWindow &win)
     {
         mActions.Shoot(mTurretSprite);
     }
+
+    sf::Vector2f currentPos;
+    GetPosition(currentPos);
+    SetPosition(currentPos - sf::Vector2f(0, -0.05f));
 }
 
 void Hero::Draw(sf::RenderWindow &window)
@@ -60,4 +60,18 @@ void Hero::Draw(sf::RenderWindow &window)
     window.draw(mHelmetSprite);
     window.draw(mMountSprite);
     window.draw(mTurretSprite);
+}
+
+void Hero::SetPosition(sf::Vector2f& newPosition)
+{
+    static const int WINDOW_HEIGHT = 768; //This is temporary, Hero shouldn't know about window dimensions
+    if(newPosition.y > (WINDOW_HEIGHT - mWheelSprite.getLocalBounds().height/2.0f)){
+        return;
+    }
+    mPosition = newPosition;
+    mWheelSprite.setPosition(newPosition);
+    mHelmetSprite.setPosition(mWheelSprite.getPosition() - mWheelSprite.getOrigin());
+    mMountSprite.setPosition(mWheelSprite.getPosition());
+    mTurretSprite.setPosition(mMountSprite.getPosition());
+    mTurretSprite.setRotation(mMountSprite.getRotation());
 }
