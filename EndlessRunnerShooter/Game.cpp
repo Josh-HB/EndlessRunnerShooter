@@ -7,7 +7,6 @@
 #include "HeroPtr.h"
 #include "Hero.h"
 #include "IDrawablePtr.h"
-#include "IDrawable.h"
 
 
 static const int WINDOW_WIDTH = 1024;
