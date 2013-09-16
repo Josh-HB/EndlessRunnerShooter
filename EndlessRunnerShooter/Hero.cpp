@@ -51,7 +51,8 @@ void Hero::Update(float time_passed, sf::RenderWindow &win)
 
     sf::Vector2f currentPos;
     GetPosition(currentPos);
-    SetPosition(currentPos - sf::Vector2f(0, -0.05f));
+    float downwardVelocity = -400.0f * time_passed;
+    SetPosition(currentPos - sf::Vector2f(0, downwardVelocity));
 }
 
 void Hero::Draw(sf::RenderWindow &window)
