@@ -5,5 +5,5 @@ namespace sf {
 class IActions
 {
 public:
-    virtual void shoot(sf::Transformable& performer) = 0;
+    virtual void Shoot(sf::Transformable& performer) = 0;
 };

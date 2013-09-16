@@ -1,8 +1,9 @@
 #include "Shot.h"
 
-Shot::Shot(sf::Vector2f pos, float rotation, sf::Texture& texture) : 
+Shot::Shot(sf::Vector2f pos, float rotation, sf::Texture& texture, sf::Time currentTime) : 
 mPosition(pos),
-mRotation(rotation)
+mRotation(rotation),
+mTimeOfBirth(currentTime)
 {
     mShotSprite = sf::CircleShape(2.f);
     mShotSprite.setOrigin(2.f, 2.f);
@@ -11,10 +12,10 @@ mRotation(rotation)
     mShotSprite.setTexture(&texture);
 }
 
-void Shot::Update(float time_passed)
+void Shot::Update(float time_passed, sf::RenderWindow &win)
 {
     //need to convert from degrees to radians
-    float angle = (3.14159/180) * mShotSprite.getRotation();
+    float angle = (3.14159f/180) * mShotSprite.getRotation();
     float newx = time_passed * cos(angle);
     float newy = time_passed * sin(angle);
 

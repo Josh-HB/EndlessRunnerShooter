@@ -1,9 +1,15 @@
 #include "Hero.h"
 #include "IActions.h"
 
-Hero::Hero(int id, sf::Vector2f pos, float radius, float scale, IActions& actions):MovingEntity(id, pos, radius, scale), mActions(actions)
+static const float PI = 3.14159f;
+static const float PI_RAD = 180 / PI;
+
+Hero::Hero(sf::Vector2f pos, float radius, float scale, IActions& actions, sf::Time currentTime) : 
+	MovingEntity(0, pos, radius, scale), 
+	mActions(actions), 
+	mTimeOfBirth(currentTime)
 {
-    if(!mWheelTexture.loadFromFile("Art/Wheelie.png"));
+    if(!mWheelTexture.loadFromFile("Art/Wheelie.png"))
     {
         //assert out
     }
@@ -28,7 +34,6 @@ Hero::Hero(int id, sf::Vector2f pos, float radius, float scale, IActions& action
     mTurretSprite.setFillColor(sf::Color::Green);
     mTurretSprite.setPosition(mMountSprite.getPosition());
     mTurretSprite.setRotation(mMountSprite.getRotation());
-
 }
 
 void Hero::Update(float time_passed, sf::RenderWindow &win)
@@ -39,17 +44,17 @@ void Hero::Update(float time_passed, sf::RenderWindow &win)
     float dx =  sf::Mouse::getPosition(win).x - mMountSprite.getPosition().x;
     float dy = sf::Mouse::getPosition(win).y - mMountSprite.getPosition().y;
 
-    float mountRotation = (atan2(dy,dx)) * 180 / 3.14159;
+    float mountRotation = (atan2(dy,dx)) * PI_RAD;
     mMountSprite.setRotation(mountRotation);
     mTurretSprite.setRotation(mMountSprite.getRotation());
 
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
     {
-        mActions.shoot(mTurretSprite);
+        mActions.Shoot(mTurretSprite);
     }
 }
 
-void Hero::Render(sf::RenderWindow &window)
+void Hero::Draw(sf::RenderWindow &window)
 {
     window.draw(mWheelSprite);
     window.draw(mHelmetSprite);

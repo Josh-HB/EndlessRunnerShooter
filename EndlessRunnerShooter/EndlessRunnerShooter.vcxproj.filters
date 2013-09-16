@@ -79,6 +79,14 @@
     </ClInclude>
     <ClInclude Include="StationaryEntity.h">
       <Filter>Header Files\Entities\Stationary Entities</Filter>
+    <ClInclude Include="HeroPtr.h">
+      <Filter>Header Files\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="IDrawable.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="IDrawablePtr.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

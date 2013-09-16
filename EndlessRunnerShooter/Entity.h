@@ -12,5 +12,4 @@ public:
                                                                   mPosition(pos),
                                                                   mBoundingRadius(radius),
                                                                   mScale(scale) {}
-	sf::Vector2f getPosition() const { return mPosition; }
 };
