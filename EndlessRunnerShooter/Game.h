@@ -19,7 +19,7 @@ private:
 	sf::Time mPreviousTime;
 
 	bool HasLifetimeExpired(IDrawablePtr drawable, const sf::Time& currentTime);
-	bool Game::IsOutOfBounds(IDrawablePtr drawable);
+	bool IsOutOfBounds(IDrawablePtr drawable);
     
 public:
     Game();
