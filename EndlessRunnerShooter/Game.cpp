@@ -13,9 +13,6 @@
 static const int WINDOW_WIDTH = 1024;
 static const int WINDOW_HEIGHT = 768;
 
-static const float MAX_SHOT_DISTANCE = 400;
-static const float MAX_SHOT_DISTANCE_SQ = MAX_SHOT_DISTANCE*MAX_SHOT_DISTANCE;
-
 Game::Game() : 
 	mWindow(NULL),
 	mDrawableList(),
