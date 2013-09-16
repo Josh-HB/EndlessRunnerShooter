@@ -82,8 +82,8 @@
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Hero.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Platform.cpp" />
     <ClCompile Include="Shot.cpp" />
-    <ClCompile Include="StationaryEntity.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Entity.h" />
@@ -94,6 +94,7 @@
     <ClInclude Include="IDrawable.h" />
     <ClInclude Include="IDrawablePtr.h" />
     <ClInclude Include="MovingEntity.h" />
+    <ClInclude Include="Platform.h" />
     <ClInclude Include="Shot.h" />
     <ClInclude Include="ShotPtr.h" />
     <ClInclude Include="StationaryEntity.h" />

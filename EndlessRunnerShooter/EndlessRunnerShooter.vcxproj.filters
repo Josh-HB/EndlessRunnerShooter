@@ -48,11 +48,11 @@
     <ClCompile Include="Shot.cpp">
       <Filter>Source Files\Shooting</Filter>
     </ClCompile>
-    <ClCompile Include="StationaryEntity.cpp">
-      <Filter>Source Files\Entities\Stationary Entities</Filter>
-    </ClCompile>
     <ClCompile Include="Hero.cpp">
       <Filter>Source Files\Entities\Moving Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="Platform.cpp">
+      <Filter>Source Files\Entities\Stationary Entities</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -88,6 +88,9 @@
     </ClInclude>
     <ClInclude Include="IDrawablePtr.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Platform.h">
+      <Filter>Header Files\Entities\Stationary Entities</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

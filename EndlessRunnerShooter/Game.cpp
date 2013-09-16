@@ -7,6 +7,9 @@
 #include "HeroPtr.h"
 #include "Hero.h"
 #include "IDrawablePtr.h"
+#include "Platform.h"
+#include "IDrawable.h"
+
 
 
 static const int WINDOW_WIDTH = 1024;
@@ -61,10 +64,13 @@ void Game::Run()
     sf::Clock clock;
 	mPreviousTime = clock.getElapsedTime();
 
-
     //main Character
 	IDrawablePtr hero = std::make_shared<Hero>(sf::Vector2f(200.f,200.f), 32.f, 1.f, *this, mPreviousTime);
 	mDrawableList.push_back(hero);
+
+    //main Platform
+    IDrawablePtr platform = std::make_shared<Platform>(1.0f, sf::Vector2f(50.f, 500.f), 400.f, 100.f, *this);
+    mDrawableList.push_back(platform);
 
 
     //main loop

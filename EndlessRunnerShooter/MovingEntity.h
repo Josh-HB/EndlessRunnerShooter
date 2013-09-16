@@ -1,3 +1,6 @@
+#ifndef MOVINGENTITY_H
+#define MOVINGENTITY_H
+
 #include "Entity.h"
 
 class MovingEntity : public Entity
@@ -14,3 +17,5 @@ public:
     MovingEntity(int id, sf::Vector2f pos, float radius, float scale):Entity(id, pos, radius, scale){}
 
 };
+
+#endif
