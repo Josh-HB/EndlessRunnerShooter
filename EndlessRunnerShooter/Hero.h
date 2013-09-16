@@ -24,6 +24,7 @@ private:
 
     IActions& mActions;
 	sf::Time mTimeOfBirth;
+    float mDownwardVelocity;
 
     void SetPosition(sf::Vector2f& newPosition);
     

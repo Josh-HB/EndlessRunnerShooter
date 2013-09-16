@@ -7,7 +7,8 @@ static const float PI_RAD = 180 / PI;
 Hero::Hero(sf::Vector2f pos, float radius, float scale, IActions& actions, sf::Time currentTime) : 
 	MovingEntity(0, pos, radius, scale), 
 	mActions(actions), 
-	mTimeOfBirth(currentTime)
+	mTimeOfBirth(currentTime),
+    mDownwardVelocity(0)
 {
     if(!mWheelTexture.loadFromFile("Art/Wheelie.png"))
     {
@@ -51,8 +52,8 @@ void Hero::Update(float time_passed, sf::RenderWindow &win)
 
     sf::Vector2f currentPos;
     GetPosition(currentPos);
-    float downwardVelocity = -400.0f * time_passed;
-    SetPosition(currentPos - sf::Vector2f(0, downwardVelocity));
+    mDownwardVelocity -= time_passed;
+    SetPosition(currentPos - sf::Vector2f(0, mDownwardVelocity));
 }
 
 void Hero::Draw(sf::RenderWindow &window)
@@ -67,6 +68,7 @@ void Hero::SetPosition(sf::Vector2f& newPosition)
 {
     static const int WINDOW_HEIGHT = 768; //This is temporary, Hero shouldn't know about window dimensions
     if(newPosition.y > (WINDOW_HEIGHT - mWheelSprite.getLocalBounds().height/2.0f)){
+        mDownwardVelocity = 0;
         return;
     }
     mPosition = newPosition;
