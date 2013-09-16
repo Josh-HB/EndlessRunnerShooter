@@ -14,7 +14,7 @@ class Shot : public IDrawable
      virtual void GetPosition(sf::Vector2f& position) { position = mPosition; }
 	 virtual float GetTimeToLive() const { return 0.4f; }
 	 virtual sf::Time GetTimeOfBirth() const { return mTimeOfBirth; }
-	 virtual bool DestroyOnScreenExit() const { return false; }
+	 virtual bool DestroyOnScreenExit() const { return true; }
 
  private:
      sf::CircleShape mShotSprite;
