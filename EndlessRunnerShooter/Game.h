@@ -17,9 +17,6 @@ private:
 	std::vector<IDrawablePtr> mDrawableList;
 	std::vector<IDrawablePtr> mNewDrawables;
 	sf::Time mPreviousTime;
-
-	bool HasLifetimeExpired(IDrawablePtr drawable, const sf::Time& currentTime);
-	bool IsOutOfBounds(IDrawablePtr drawable);
     
 public:
     Game();

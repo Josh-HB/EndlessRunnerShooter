@@ -25,7 +25,36 @@ Game::Game() :
     }
     mBgSprite.setTexture(mBackground);
     mShotTex.loadFromFile("Art/Shot.png");
-}                                                                                                                                                                                                                                                                                                                
+}
+
+bool HasLifetimeExpired(IDrawablePtr drawable, const sf::Time& currentTime)
+{
+    float durationOfLife = (currentTime - drawable->GetTimeOfBirth()).asSeconds();
+    float maximumLifetime = drawable->GetTimeToLive();
+    if(drawable->GetTimeToLive() > 0)
+    {
+        if(durationOfLife > maximumLifetime)
+        {
+            return true;
+        }
+    } 
+    return false;
+}
+
+bool IsOutOfBounds(IDrawablePtr drawable)
+{
+    sf::Vector2f pos;
+    drawable->GetPosition(pos);
+    if(drawable->DestroyOnScreenExit())
+    {
+        if(pos.x < 0 || pos.x > WINDOW_WIDTH ||
+            pos.y < 0 || pos.y > WINDOW_HEIGHT)
+        {
+            return true;
+        }
+    }
+    return false;
+}
 
 void Game::Run()
 {
@@ -81,33 +110,4 @@ void Game::Run()
 void Game::Shoot(sf::Transformable& performer)
 {
 	mNewDrawables.push_back(std::make_shared<Shot>(performer.getPosition(), performer.getRotation(), mShotTex, mPreviousTime));
-}
-
-bool Game::HasLifetimeExpired(IDrawablePtr drawable, const sf::Time& currentTime)
-{
-	float durationOfLife = (currentTime - drawable->GetTimeOfBirth()).asSeconds();
-	float maximumLifetime = drawable->GetTimeToLive();
-	if(drawable->GetTimeToLive() > 0)
-	{
-		if(durationOfLife > maximumLifetime)
-		{
-			return true;
-		}
-	} 
-	return false;
-}
-
-bool Game::IsOutOfBounds(IDrawablePtr drawable)
-{
-	sf::Vector2f pos;
-	drawable->GetPosition(pos);
-	if(drawable->DestroyOnScreenExit())
-	{
-		if(pos.x < 0 || pos.x > WINDOW_WIDTH ||
-			pos.y < 0 || pos.y > WINDOW_HEIGHT)
-		{
-			return true;
-		}
-	}
-	return false;
 }
