@@ -79,6 +79,7 @@
     </ClInclude>
     <ClInclude Include="StationaryEntity.h">
       <Filter>Header Files\Entities\Stationary Entities</Filter>
+    </ClInclude>
     <ClInclude Include="HeroPtr.h">
       <Filter>Header Files\Entities</Filter>
     </ClInclude>
