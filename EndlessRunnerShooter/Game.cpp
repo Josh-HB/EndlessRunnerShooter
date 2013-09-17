@@ -69,7 +69,7 @@ void Game::Run()
 	mDrawableList.push_back(hero);
 
     //main Platform
-    IDrawablePtr platform = std::make_shared<Platform>(1.0f, sf::Vector2f(50.f, 500.f), 400.f, 100.f, *this);
+    IDrawablePtr platform = std::make_shared<Platform>(1, sf::Vector2f(50.f, 500.f), 400.f, 100.f, *this);
     mDrawableList.push_back(platform);
 
 

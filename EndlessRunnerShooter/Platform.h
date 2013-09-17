@@ -11,8 +11,8 @@ class Platform : public StationaryEntity, public IDrawable
 {
 private:
     //Rectangle dimensions
-    int mWidth;
-    int mHeight;
+    float mWidth;
+    float mHeight;
 
     sf::RectangleShape mShape;
     
