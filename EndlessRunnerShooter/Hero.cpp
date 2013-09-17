@@ -45,9 +45,16 @@ void Hero::Update(float time_passed, sf::RenderWindow &win)
     mMountSprite.setRotation(mountRotation);
     mTurretSprite.setRotation(mMountSprite.getRotation());
 
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+    if(sf::Mouse::isButtonPressed(sf::Mouse::Left))
     {
         mActions.Shoot(mTurretSprite);
+    } 
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+    {
+        if(mDownwardVelocity == 0)
+        {
+            mDownwardVelocity = 0.25f;
+        }
     }
 
     sf::Vector2f currentPos;
