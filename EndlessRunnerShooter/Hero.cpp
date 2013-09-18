@@ -4,10 +4,9 @@
 static const float PI = 3.14159f;
 static const float PI_RAD = 180 / PI;
 
-Hero::Hero(sf::Vector2f pos, float radius, float scale, IActions& actions, sf::Time currentTime) : 
+Hero::Hero(sf::Vector2f pos, float radius, float scale, IActions& actions) : 
 	MovingEntity(0, pos, radius, scale), 
-	mActions(actions), 
-	mTimeOfBirth(currentTime),
+	mActions(actions),
     mDownwardVelocity(0)
 {
     if(!mWheelTexture.loadFromFile("Art/Wheelie.png"))
@@ -45,15 +44,11 @@ void Hero::Update(float time_passed, sf::RenderWindow &win)
     mMountSprite.setRotation(mountRotation);
     mTurretSprite.setRotation(mMountSprite.getRotation());
 
-    if(sf::Mouse::isButtonPressed(sf::Mouse::Left))
-    {
-        mActions.Shoot(mTurretSprite);
-    } 
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
     {
         if(mDownwardVelocity == 0)
         {
-            mDownwardVelocity = 0.25f;
+            mDownwardVelocity = 1.f;
         }
     }
 
@@ -61,6 +56,11 @@ void Hero::Update(float time_passed, sf::RenderWindow &win)
     GetPosition(currentPos);
     mDownwardVelocity -= time_passed;
     SetPosition(currentPos - sf::Vector2f(0, mDownwardVelocity));
+}
+
+void Hero::Shooting()
+{
+    mActions.Shoot(mTurretSprite);
 }
 
 void Hero::Draw(sf::RenderWindow &window)

@@ -37,6 +37,15 @@
     <Filter Include="Source Files\Entities\Moving Entity">
       <UniqueIdentifier>{a6ad57c6-edf4-415f-bd9c-a3385e5a2de5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Entities\Moving Entities\Enemies">
+      <UniqueIdentifier>{c81e6797-484d-455d-a391-0adc0d137cfe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Entities\Moving Entity\Enemies">
+      <UniqueIdentifier>{5fe442b9-2c1c-4bdb-b89a-2961245af656}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Debug">
+      <UniqueIdentifier>{54170de6-27f9-4803-81cd-0d579a6360ca}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -53,6 +62,9 @@
     </ClCompile>
     <ClCompile Include="Platform.cpp">
       <Filter>Source Files\Entities\Stationary Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy.cpp">
+      <Filter>Source Files\Entities\Moving Entity\Enemies</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -91,6 +103,9 @@
     </ClInclude>
     <ClInclude Include="Platform.h">
       <Filter>Header Files\Entities\Stationary Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy.h">
+      <Filter>Header Files\Entities\Moving Entities\Enemies</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

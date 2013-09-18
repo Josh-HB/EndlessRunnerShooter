@@ -8,7 +8,7 @@
 class Shot : public IDrawable
 {
  public:
-     Shot(sf::Vector2f pos, float rotation, sf::Texture& texture, sf::Time currentTime);
+     Shot(sf::Vector2f pos, float rotation, sf::Texture& texture);
 	 virtual void Update(float time_passed, sf::RenderWindow &win);
 	 virtual void Draw(sf::RenderWindow &window);
      virtual void GetPosition(sf::Vector2f& position) { position = mPosition; }

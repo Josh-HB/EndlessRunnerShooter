@@ -1,9 +1,8 @@
 #include "Shot.h"
 
-Shot::Shot(sf::Vector2f pos, float rotation, sf::Texture& texture, sf::Time currentTime) : 
+Shot::Shot(sf::Vector2f pos, float rotation, sf::Texture& texture) : 
 mPosition(pos),
-mRotation(rotation),
-mTimeOfBirth(currentTime)
+mRotation(rotation)
 {
     mShotSprite = sf::CircleShape(2.f);
     mShotSprite.setOrigin(2.f, 2.f);
@@ -23,8 +22,8 @@ void Shot::Update(float time_passed, sf::RenderWindow &win)
     sf::Vector2f newPos = mShotSprite.getPosition();
     newPos.x += newx * 750.f;
     newPos.y += newy * 750.f;
-
-    mShotSprite.setPosition(newPos);
+    mPosition = newPos;
+    mShotSprite.setPosition(mPosition);
 }
 
 void Shot::Draw(sf::RenderWindow &window)
