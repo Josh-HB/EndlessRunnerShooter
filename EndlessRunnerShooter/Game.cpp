@@ -18,7 +18,10 @@ static const int WINDOW_HEIGHT = 768;
 Game::Game() : 
     mWindow(NULL),
     mDrawableList(),
-    mNewDrawables()
+    mNewDrawables(),
+    mTime(0.0f),
+    mDeltaTime(0.01f),
+    mAccumulator(0.0f)
 {
     mWindow = std::make_shared<sf::RenderWindow>(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "Game", sf::Style::Default);
     mWindow->setKeyRepeatEnabled(false);
@@ -28,7 +31,7 @@ Game::Game() :
     }
     mBgSprite.setTexture(mBackground);
     mShotTex.loadFromFile("Art/Shot.png");
-    mDeltaTime = 1.f / 60.f;
+
 }
 
 bool HasLifetimeExpired(IDrawablePtr drawable, const sf::Time& currentTime)
@@ -71,43 +74,53 @@ void Game::Run()
     mDrawableList.push_back(hero);
 
     //main Platform
-    IDrawablePtr platform = std::make_shared<Platform>(1, sf::Vector2f(50.f, 500.f), 400.f, 100.f, *this);
+    std::shared_ptr<Platform> platform = std::make_shared<Platform>(1, sf::Vector2f(50.f, 500.f), 400.f, 100.f, *this);
     mDrawableList.push_back(platform);
 
     //main loop
     while (mWindow->isOpen())
     {
-        sf::Time frameTime = clock.restart();
+        float frameTime = clock.restart().asSeconds();
+        if(frameTime > 0.25f)
+            frameTime = 0.25f;
 
-        //event loop / non-blocking
-        sf::Event event;
-        while (mWindow->pollEvent(event))
+        mAccumulator += frameTime;
+
+        while( mAccumulator >= mDeltaTime )
         {
-            if (event.type == sf::Event::Closed)
-                mWindow->close();
-            if(event.type == sf::Event::MouseButtonPressed)
+            //event loop / non-blocking
+            sf::Event event;
+            while (mWindow->pollEvent(event))
             {
-                if(event.mouseButton.button == sf::Mouse::Left)
-                    hero->Shooting();
+                if (event.type == sf::Event::Closed)
+                    mWindow->close();
+                if(event.type == sf::Event::MouseButtonPressed)
+                {
+                    if(event.mouseButton.button == sf::Mouse::Left)
+                        hero->Shooting();
+                }
             }
+
+            mDrawableList.insert(mDrawableList.end(), mNewDrawables.begin(), mNewDrawables.end());
+            mNewDrawables.clear();
+            for(std::vector<IDrawablePtr>::iterator it = mDrawableList.begin(); it != mDrawableList.end();)
+            {
+                (*it)->Update(1.f/60.f, *mWindow);
+                if(IsOutOfBounds(*it))// || HasLifetimeExpired(*it, currentTime))
+                {
+                    it = mDrawableList.erase(it);
+                }
+                else
+                {
+                    it++;
+                }
+            }
+
+            mTime += mDeltaTime;
+            mAccumulator -= mDeltaTime;
         }
 
-        mDrawableList.insert(mDrawableList.end(), mNewDrawables.begin(), mNewDrawables.end());
-        mNewDrawables.clear();
-        for(std::vector<IDrawablePtr>::iterator it = mDrawableList.begin(); it != mDrawableList.end();)
-        {
-            (*it)->Update(frameTime.asSeconds(), *mWindow);
-            if(IsOutOfBounds(*it))// || HasLifetimeExpired(*it, currentTime))
-            {
-                it = mDrawableList.erase(it);
-            }
-            else
-            {
-                it++;
-            }
-        }
-
-        std::cout << 1.f /frameTime.asSeconds() << "\n";
+        std::cout << 1.f /frameTime << "\n";
 
         mWindow->clear();
         mWindow->draw(mBgSprite);		

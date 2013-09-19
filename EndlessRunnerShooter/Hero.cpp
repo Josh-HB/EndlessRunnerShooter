@@ -48,7 +48,7 @@ void Hero::Update(float time_passed, sf::RenderWindow &win)
     {
         if(mDownwardVelocity == 0)
         {
-            mDownwardVelocity = 1.f;
+            mDownwardVelocity = 200.f * time_passed;
         }
     }
 
