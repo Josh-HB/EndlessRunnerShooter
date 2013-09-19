@@ -18,10 +18,7 @@ static const int WINDOW_HEIGHT = 768;
 Game::Game() : 
     mWindow(NULL),
     mDrawableList(),
-    mNewDrawables(),
-    mTime(0.0f),
-    mDeltaTime(0.01f),
-    mAccumulator(0.0f)
+    mNewDrawables()
 {
     mWindow = std::make_shared<sf::RenderWindow>(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "Game", sf::Style::Default);
     mWindow->setKeyRepeatEnabled(false);
@@ -68,6 +65,8 @@ void Game::Run()
 {
     //TIme Step
     sf::Clock clock;
+    sf::Time timeSinceLastUpdate = sf::Time::Zero;
+    const sf::Time timePerFrame = sf::seconds( 1.f / 60.f );
 
     //main Character
     std::shared_ptr<Hero> hero = std::make_shared<Hero>(sf::Vector2f(200.f,200.f), 32.f, 1.f, *this);
@@ -80,14 +79,14 @@ void Game::Run()
     //main loop
     while (mWindow->isOpen())
     {
-        float frameTime = clock.restart().asSeconds();
-        if(frameTime > 0.25f)
-            frameTime = 0.25f;
+        timeSinceLastUpdate += clock.restart();
 
-        mAccumulator += frameTime;
+        std::cout << 1.f / timeSinceLastUpdate.asSeconds() << "\n";
 
-        while( mAccumulator >= mDeltaTime )
+        while( timeSinceLastUpdate > timePerFrame )
         {
+            timeSinceLastUpdate -= timePerFrame;
+
             //event loop / non-blocking
             sf::Event event;
             while (mWindow->pollEvent(event))
@@ -105,7 +104,7 @@ void Game::Run()
             mNewDrawables.clear();
             for(std::vector<IDrawablePtr>::iterator it = mDrawableList.begin(); it != mDrawableList.end();)
             {
-                (*it)->Update(1.f/60.f, *mWindow);
+                (*it)->Update(timePerFrame.asSeconds(), *mWindow);
                 if(IsOutOfBounds(*it))// || HasLifetimeExpired(*it, currentTime))
                 {
                     it = mDrawableList.erase(it);
@@ -115,12 +114,7 @@ void Game::Run()
                     it++;
                 }
             }
-
-            mTime += mDeltaTime;
-            mAccumulator -= mDeltaTime;
         }
-
-        std::cout << 1.f /frameTime << "\n";
 
         mWindow->clear();
         mWindow->draw(mBgSprite);		

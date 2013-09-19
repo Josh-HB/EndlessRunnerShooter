@@ -16,10 +16,7 @@ private:
 
 	std::vector<IDrawablePtr> mDrawableList;
 	std::vector<IDrawablePtr> mNewDrawables;
-	
-    float mTime;
-    const float mDeltaTime;
-    float mAccumulator;
+
 public:
     Game();
     ~Game() {};
