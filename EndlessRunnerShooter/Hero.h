@@ -28,7 +28,6 @@ private:
     float mRadius;
 
     IActions& mActions;
-    float mDownwardVelocity;
 
     void SetPosition(sf::Vector2f& newPosition);
     
@@ -41,6 +40,7 @@ public:
 	virtual bool DestroyOnScreenExit() const { return false; }
 
     void Shooting();
+    void Jump();
 };
 
 #endif

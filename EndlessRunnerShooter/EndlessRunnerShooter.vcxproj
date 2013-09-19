@@ -83,6 +83,7 @@
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Hero.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MovingEntity.cpp" />
     <ClCompile Include="Platform.cpp" />
     <ClCompile Include="Shot.cpp" />
   </ItemGroup>

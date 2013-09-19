@@ -81,7 +81,7 @@ void Game::Run()
     {
         timeSinceLastUpdate += clock.restart();
 
-        std::cout << 1.f / timeSinceLastUpdate.asSeconds() << "\n";
+        //std::cout << 1.f / timeSinceLastUpdate.asSeconds() << "\n";
 
         while( timeSinceLastUpdate > timePerFrame )
         {
@@ -97,6 +97,11 @@ void Game::Run()
                 {
                     if(event.mouseButton.button == sf::Mouse::Left)
                         hero->Shooting();
+                }
+                if(event.type == sf::Event::KeyPressed)
+                {
+                    if(event.key.code == sf::Keyboard::Space)
+                        hero->Jump();
                 }
             }
 

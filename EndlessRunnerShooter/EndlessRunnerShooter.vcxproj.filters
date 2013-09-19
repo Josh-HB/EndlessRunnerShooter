@@ -66,6 +66,9 @@
     <ClCompile Include="Enemy.cpp">
       <Filter>Source Files\Entities\Moving Entity\Enemies</Filter>
     </ClCompile>
+    <ClCompile Include="MovingEntity.cpp">
+      <Filter>Source Files\Entities\Moving Entity</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
